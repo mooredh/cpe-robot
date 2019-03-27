@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arimo', sans-serif;
+}
+
+.container {
+    background: linear-gradient(to bottom right, #303B43, #07090C);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title {
+    height: 5%;
+    font-size: 20px;
+    font-family: 'Righteous', cursive;
+    width: 100%;
+    display: flex;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+}
+
+.robot-container {
+    flex: 2;
+}
+
+.btn-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.btn-container > div {
+    background: #2ca;
+    width: 40%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: #fff;
+    font-size: 14px;
+    transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+}
+
+.btn-container.back > div {
+    background: #f42;
+}
+
+.btn-container > div:hover {
+    cursor: pointer;
+    background: #0a7;
+}
+
+.btn-container.back > div:hover {
+    background: #d20;
+}
