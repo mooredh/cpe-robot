@@ -8,14 +8,17 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo|Righteous" rel="stylesheet">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/robot.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <title>CPE Robot Controller</title>
 </head>
 
 <body>
     <div class="container">
         <div class="title">THE CPE ROBOT</div>
+        <div id="test">Stopped</div>
         <div class="btn-container">
-            <div>Move Forward</div>
+            <div id="forward">Move Forward</div>
         </div>
         <div class="robot-container">
             <div class="robot">
@@ -148,9 +151,10 @@
             </div>
         </div>
         <div class="btn-container back">
-            <div>Move Backward</div>
+            <div id="backward">Move Backward</div>
         </div>
     </div>
+    <script src="js/index.js"></script>
 </body>
 
 </html>
