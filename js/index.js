@@ -1,53 +1,77 @@
 var test = document.getElementById("test");
-
-function move(dir = "backward") {
-    if (dir === "forward") {
-        test.textContent = "Moving Forward"
-    } else {
-        test.textContent = "Moving Backward"
-    }
-}
-
-function stop() {
-    test.textContent = "Stopped"
-}
-
-var bWard = document.getElementById("backward");
-var fWard = document.getElementById("forward");
-
-bWard.onmousedown = () => move();
-bWard.onmouseup = () => stop();
-
-fWard.onmousedown = () => move("forward");
-fWard.onmouseup = () => stop();
-
-
+const URL = "http://127.0.0.1:5000";
+const bWard = document.getElementById("backward");
+const fWard = document.getElementById("forward");
 window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+
 let finalTranscript = '';
 let recognition = new window.SpeechRecognition();
-recognition.interimResults = true;
+recognition.interimResults = false;
 recognition.maxAlternatives = 10;
-recognition.continuous = true;
+recognition.continuous = false;
+const msg = document.getElementById('message')
 
 recognition.onerror = (e) => {
-    console.log("Error")
-    console.log(e)
+  console.log("Error")
+  console.log(e)
 }
 
 recognition.onresult = (event) => {
-  let interimTranscript = '';
-  for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
-    let transcript = event.results[i][0].transcript;
-    if (event.results[i].isFinal) {
-      finalTranscript += transcript;
-    } else {
-      interimTranscript += transcript;
-    }
+let interimTranscript = '';
+for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
+  let transcript = event.results[i][0].transcript;
+  if (event.results[i].isFinal) {
+    finalTranscript += transcript;
+  } else {
+    interimTranscript += transcript;
   }
-  document.querySelector('.title').innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</>';
+}
+msg.innerHTML = finalTranscript
+mapMessageToAction(finalTranscript)
+  this.setTimeout(() => {
+    finalTranscript = "";
+    interimTranscript = "";
+    msg.innerHTML = "Waiting for voice";
+  }, 2500)
 }
 
-recognition.onspeechend = () => recognition.stop()
+recognition.onspeechend = () => {
+  recognition.stop()
+  
+
+}
+
+const mapMessageToAction = (message) => {
+  console.log("MESSAGE ->",message)
+  if(message.includes("forward")){
+    request("forward");
+  }
+  else if (message.includes("backward")){
+    request("backward");
+  }
+  else if (message.includes("picture")){
+    request("capture")
+  }
+  else{
+    msg.innerHTML = `I'm afraid I didn't understand '${msg.innerHTML}'`;
+    return 
+  }
+}
 
 
-const startRecognition = () => recognition.start();
+const request = async (path) => {
+  try{
+    const res = await axios.get(`${URL}/${path}`)
+    console.log(res)
+  }
+  catch(e){
+    console.log("An error occured")
+    console.log(e)
+  }
+}
+
+
+const startRecognition = () => {
+  console.log("Starting recog")
+  recognition.start();
+}

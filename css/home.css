@@ -39,7 +39,7 @@
     z-index: 10;
 }
 
-.btn-container > div {
+.btn-container>div {
     background: #2ca;
     width: 40%;
     height: 30%;
@@ -58,19 +58,29 @@
     -o-transition: all 200ms ease-in-out;
 }
 
-.btn-container.back > div {
+.btn-container.back>div {
     background: #f42;
 }
 
-.btn-container > div:hover {
+.btn-container>div:hover {
     cursor: pointer;
     background: #0a7;
 }
 
-.btn-container.back > div:hover {
+.btn-container.back>div:hover {
     background: #d20;
 }
 
 #test {
     color: #fff;
+}
+
+button {
+    color: blue;
+    padding: 20px;
+    background: white;
+}
+
+#message {
+    color: white;
 }
